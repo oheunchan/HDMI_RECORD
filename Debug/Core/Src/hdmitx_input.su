@@ -1,0 +1,9 @@
+../Core/Src/hdmitx_input.c:28:6:CalcAudFS	16	static
+../Core/Src/hdmitx_input.c:49:6:CalcPCLK	32	static
+../Core/Src/hdmitx_input.c:129:6:CalcRCLK	32	static
+../Core/Src/hdmitx_input.c:165:8:hdmitx_getInputHTotal	16	static
+../Core/Src/hdmitx_input.c:182:8:hdmitx_getInputVTotal	16	static
+../Core/Src/hdmitx_input.c:197:6:hdmitx_isInputInterlace	16	static
+../Core/Src/hdmitx_input.c:209:6:hdmitx_getAudioCount	8	static
+../Core/Src/hdmitx_input.c:214:7:AbsoluteLong	24	static
+../Core/Src/hdmitx_input.c:221:6:IsPCLKStable	32	static

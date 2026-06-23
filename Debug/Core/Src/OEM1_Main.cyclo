@@ -1,0 +1,4 @@
+../Core/Src/OEM1_Main.c:79:6:change_config_by_switch	7
+../Core/Src/OEM1_Main.c:156:6:led_show_status	1
+../Core/Src/OEM1_Main.c:165:6:OEM_1_MainLoop	6
+../Core/Src/OEM1_Main.c:373:6:_print_buf	3

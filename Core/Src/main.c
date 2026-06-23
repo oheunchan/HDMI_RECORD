@@ -18,7 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "stdio.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -44,6 +44,7 @@ I2C_HandleTypeDef hi2c1;
 
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
+volatile unsigned int ite_int_check = 0; //oec20251221
 
 /* USER CODE BEGIN PV */
 
@@ -61,6 +62,85 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+#if 1	//oec20240609
+
+typedef enum tagHDMI_Video_Type {
+    HDMI_Unkown = 0 ,
+    HDMI_640x480p60 = 1 ,
+    HDMI_480p60,
+    HDMI_480p60_16x9,
+    HDMI_720p60,
+    HDMI_1080i60,
+    HDMI_480i60,
+    HDMI_480i60_16x9,
+    HDMI_1080p60 = 16,
+    HDMI_576p50,
+    HDMI_576p50_16x9,
+    HDMI_720p50,
+    HDMI_1080i50,
+    HDMI_576i50,
+    HDMI_576i50_16x9,
+    HDMI_1080p50 = 31,
+    HDMI_1080p24,
+    HDMI_1080p25,
+    HDMI_1080p30,
+    HDMI_720p30 = 61,
+    HDMI_4k24 =93,
+    HDMI_4k25 = 94,
+    HDMI_4k30 = 95,
+    HDMI_4k24_SMPTE = 98,
+} HDMI_Video_Type ;
+
+
+typedef enum tagHDMI_OutputColorMode {
+    HDMI_RGB444,
+    HDMI_YUV422,/*20230111*/
+    HDMI_YUV444
+} HDMI_OutputColorMode ;
+
+typedef unsigned char u8;
+
+#endif
+
+#if 1
+int _write(int file, char* p, int len){
+	HAL_UART_Transmit(&huart1, (unsigned char*)p, len, 10);
+	return len;
+}
+#endif
+void Reset_ITE(void)
+{
+  printf("#####ITE Reset!!\r\n");
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); 
+}
+
+
+void LED_ON_OFF(u8 onoff)
+{
+	// HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, onoff);
+//  HAL_GPIO_WritePin(GPIOA, UV_LED_ON_Pin, onoff);
+  
+	#if 0
+	printf("!!!!LED STATUS %d\r\n",onoff);
+	printf("!!!!LED STATUS %d\r\n",onoff);
+	printf("!!!!LED STATUS %d\r\n",onoff);
+	printf("!!!!LED STATUS %d\r\n",onoff);
+	#endif
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {  //oec20251221
+	if (GPIO_Pin == GPIO_PIN_4) {
+		// PB8 인터럽트 발생 시 처리
+		if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4) == GPIO_PIN_SET) {
+			ite_int_check = 1;
+			printf("########HDMI Interrupt Pin Detected!!\r\n");
+		}
+	}
+}
 
 /* USER CODE END 0 */
 
@@ -104,6 +184,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    extern 	void OEM_1_MainLoop(void);
+	OEM_1_MainLoop();
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

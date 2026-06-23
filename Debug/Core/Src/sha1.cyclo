@@ -1,0 +1,2 @@
+../Core/Src/sha1.c:23:6:SHATransform	6
+../Core/Src/sha1.c:99:6:SHA_Simple	7
