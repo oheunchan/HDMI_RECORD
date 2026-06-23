@@ -1,4 +1,4 @@
-../Core/Src/OEM1_Main.c:79:6:change_config_by_switch	16	static
-../Core/Src/OEM1_Main.c:156:6:led_show_status	4	static
-../Core/Src/OEM1_Main.c:165:6:OEM_1_MainLoop	16	static
-../Core/Src/OEM1_Main.c:373:6:_print_buf	32	static
+../Core/Src/OEM1_Main.c:80:6:change_config_by_switch	16	static
+../Core/Src/OEM1_Main.c:157:6:led_show_status	4	static
+../Core/Src/OEM1_Main.c:166:6:OEM_1_MainLoop	16	static
+../Core/Src/OEM1_Main.c:369:6:_print_buf	32	static

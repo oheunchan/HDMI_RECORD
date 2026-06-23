@@ -21,6 +21,7 @@
 #include "hdmitx_sys.h"
 #include "hdmitx_drv.h"
 #include "Global_hid.h"
+
 #endif
 //****************************************************************************
 unsigned char g_current_system_state = 0;
@@ -250,12 +251,7 @@ void OEM_1_MainLoop(void)
 
 
 #include <stdio.h>
-// #include <string.h>
-//#include "../../IT6350/code/include.h"
-//#include "../../IT6350/code/api/api_adc.h"
-//#include "../IO_IT6350.h"
-//#include "global.h"
-//#include "global_hid.h"
+
 #define _IT6350_USBFW_
 #include "global_hid.h"
 

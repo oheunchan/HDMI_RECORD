@@ -19,6 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stdio.h"
+#include "IT68013CX\it68013CX_main.c"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -185,8 +187,9 @@ int main(void)
   while (1)
   {
     extern 	void OEM_1_MainLoop(void);
-	OEM_1_MainLoop();
-
+    extern   void it68013CX_main(void);
+	  OEM_1_MainLoop();
+    it68013CX_main();
 
     /* USER CODE END WHILE */
 
