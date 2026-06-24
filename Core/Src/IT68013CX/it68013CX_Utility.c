@@ -14,11 +14,14 @@
 #include "it68013CX_Utility.h"
 #include "stdio.h"
 
+#if 0
 
-idata USHORT ucTickCount=0;
-idata USHORT loopTicCount = 0;
-idata USHORT prevTickCount;
-idata USHORT MsdelayCnt =0;
+uint16_t ucTickCount=0;
+uint16_t loopTicCount = 0;
+uint16_t prevTickCount;
+uint16_t MsdelayCnt =0;
+
+
 
 void init_printf(void)
 {
@@ -94,7 +97,7 @@ void system_tick(void) interrupt 3 {
 
 USHORT getloopTicCount()
 {
-    idata USHORT loopms;
+    uint16_t loopms;
 
     if(loopTicCount>ucTickCount)
     {
@@ -170,3 +173,4 @@ void delay1ms(USHORT ms)
         }while(diff<ms);
 }
 
+#endif

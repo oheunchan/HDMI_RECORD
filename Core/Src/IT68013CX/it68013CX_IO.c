@@ -43,6 +43,7 @@ void InitMysonIO()
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+#if 0
 #ifdef _IT6802_BOARD_
 sbit  DEV0_SCL_PORT = P1^0;
 sbit  DEV0_SDA_PORT = P1^1;
@@ -77,6 +78,7 @@ sbit  DEV4_SCL_PORT = P0^2;
 sbit  DEV4_SDA_PORT = P0^3;
 
 #endif
+#endif
 
 extern int gpHPD0; //oec2026
 
@@ -98,7 +100,7 @@ void SetintActive(BOOL bactive)
     bactive =0;  //fake code
 
 }
-
+#if 0
 
 void set_8051_scl( BOOL bit_value,BYTE device )
 {
@@ -339,6 +341,7 @@ BOOL i2c_read_byte( BYTE address,BYTE offset,BYTE byteno,BYTE *p_data,BYTE devic
     return 1;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////
 //IIC control Functions
 //
@@ -374,3 +377,4 @@ SYS_STATUS IT6802_CEC_WriteI2C_Byte(BYTE offset,BYTE buffer )
 
 #endif
 
+#endif

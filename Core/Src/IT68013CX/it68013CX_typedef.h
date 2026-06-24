@@ -19,7 +19,7 @@
 
 #define FALSE        0
 #define TRUE        1
-#define SUCCESS    0
+// #define SUCCESS    0
 #define FAIL        -1
 #define ON            1
 #define OFF            0
@@ -28,8 +28,8 @@
 
 typedef uint8_t BOOL;
 //#define const code
-#define _IDATA idata
-#define _XDATA xdata
+#define _IDATA uint16_t
+#define _XDATA uint8_t
 // typedef    code    unsigned char    cBYTE;
 
 typedef char CHAR, *PCHAR;

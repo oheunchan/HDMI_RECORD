@@ -89,6 +89,8 @@ void Error_Handler(void);
 #define STM_UART1_RX_GPIO_Port GPIOA
 #define HDMI_RX_RST_Pin GPIO_PIN_9
 #define HDMI_RX_RST_GPIO_Port GPIOB
+#define EEPROM_SEL_Pin GPIO_PIN_0
+#define EEPROM_SEL_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 

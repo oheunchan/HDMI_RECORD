@@ -1390,8 +1390,9 @@ void IT6802_fsm_init(void)
 
 //FIX_ID_006 xxxxx    //Add P2_0 for switch Exteranl 24c04 EEPROM and Internal IT6802 EDID RAM
 #ifndef MEGAWIN82516
-    P2_0=1;
-    if(P2_0==0)
+    // P2_0=1;
+    // if(P2_0==0)
+    if(1) //oec2026 이부분 확인이 필요함!!
     {
         #ifdef FIX_ID_013_
         //printf("!!!Use External EEPROM 24c04 EDID !!!\n");
