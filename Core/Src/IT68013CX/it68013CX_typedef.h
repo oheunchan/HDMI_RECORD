@@ -28,8 +28,8 @@
 
 typedef uint8_t BOOL;
 //#define const code
-#define _IDATA uint16_t
-#define _XDATA uint8_t
+#define _IDATA	//yjh2026
+#define _XDATA	//yjh2026
 // typedef    code    unsigned char    cBYTE;
 
 typedef char CHAR, *PCHAR;

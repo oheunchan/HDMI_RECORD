@@ -173,4 +173,57 @@ void delay1ms(USHORT ms)
         }while(diff<ms);
 }
 
+#else //yjh2026
+
+void init_printf(void)
+{
+	//UART already initialized in main.c
+}
+
+void initialTimer1(void)
+{
+	//SysTick already configured by HAL_Init()
+}
+
+USHORT getloopTicCount()
+{
+	static uint32_t prevTick = 0;
+	uint32_t curTick = HAL_GetTick();
+	uint32_t diff = curTick - prevTick;
+	prevTick = curTick;
+	return (USHORT)diff;
+}
+
+static USHORT CalTimer(USHORT SetupCnt)
+{
+	USHORT curTick = (USHORT)(HAL_GetTick() & 0xFFFF);
+	if(SetupCnt > curTick)
+	{
+		return (0xFFFF - (SetupCnt - curTick));
+	}
+	else
+	{
+		return (curTick - SetupCnt);
+	}
+}
+
+int TimeOutCheck(USHORT timer, USHORT x)
+{
+	if(CalTimer(timer) >= x)
+	{
+		return TRUE;
+	}
+	return FALSE;
+}
+
+USHORT GetCurrentVirtualTime()
+{
+	return (USHORT)(HAL_GetTick() & 0xFFFF);
+}
+
+void delay1ms(USHORT ms)
+{
+	HAL_Delay(ms);
+}
+
 #endif

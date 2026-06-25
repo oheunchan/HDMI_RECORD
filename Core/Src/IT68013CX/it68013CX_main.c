@@ -91,54 +91,40 @@ void HoldSystem(void)
 ////////////////////////////////////////////////////////
 void it68013CX_main( void )
 {
+    static BYTE it68013CX_initialized = 0; //yjh2026
+    static USHORT loopinterval = 0; //yjh2026
 
-//    BYTE uc;
-    USHORT loopinterval;
-
+    //yjh2026 - init once, removed while(1) for non-blocking
+    if(!it68013CX_initialized)
+    {
 #ifdef MEGAWIN82516
-    P3M0=0x20;
-    P3M1=0x20;
-    AFE_RESET_PIN=1;        //for TI442x Demo board only
+        P3M0=0x20;
+        P3M1=0x20;
+        AFE_RESET_PIN=1;        //for TI442x Demo board only
 #else
-    // P2_3 = 0;    // for DAC enable !!!
+        // P2_3 = 0;    // for DAC enable !!!
 #endif
-//    HotPlug(0);    //clear port 1 HPD=0 for Enable EDID update
 
+        #ifdef Enable_IR
+            initial_INT1();
+            initialTimer0();
+        #endif
 
-    #ifdef Enable_IR
-        initial_INT1();
-        initialTimer0();
-    #endif
+        initialTimer1();
+        InitMessage();
 
-    initialTimer1();
-    InitMessage();
+        it6802HPDCtrl(1,0);    // HDMI port , set HPD = 0
 
-//xxxxx 2013-0801
-    it6802HPDCtrl(1,0);    // HDMI port , set HPD = 0
-//xxxxx
+        delay1ms(1000);    //for power sequence
+        IT6802_fsm_init();
 
-    delay1ms(1000);    //for power sequence
-    IT6802_fsm_init();
+        it6802HPDCtrl(1,1);    // HDMI port , set HPD = 1
 
-    #if 0   //oec2026
-    Hold_Pin=1;
-    while(!Hold_Pin)
-    {
-            // HotPlug(1);    //clear port 1 HPD=0 for Enable EDID update
-        //xxxxx 2013-0801
-            it6802HPDCtrl(1,1);    // HDMI port , set HPD = 1
-        //xxxxx
-
+        it68013CX_initialized = 1;
+        return;
     }
-    #else
-    it6802HPDCtrl(1,1);    // HDMI port , set HPD = 1
-    #endif
 
-
-    while(1)
-    {
-
-
+    //yjh2026 - loop body (called repeatedly from main.c)
     #ifdef Enable_IR
         IRHandler();
     #endif
@@ -148,43 +134,17 @@ void it68013CX_main( void )
                 UartCommand();
         #endif
     #endif
-    
-    #if 0 //oec2026
-        Hold_Pin=1;
-        if(Hold_Pin)        // only bypass it6802 fsm on debug mode !!!
-        {
 
-               loopinterval += getloopTicCount();
+    loopinterval += getloopTicCount();
 
-               ///////////////////////////
-               // sys main flow
-               ///////////////////////////
-               if( loopinterval >=MS_LOOP) //execute once each 50m second
-               {
-            //    printf("loopinterval\n");
-
-                loopinterval =0;
-                IT6802_fsm();
-              }
-        }
-    #else
-            loopinterval += getloopTicCount();
-
-               ///////////////////////////
-               // sys main flow
-               ///////////////////////////
-            if( loopinterval >=MS_LOOP) //execute once each 50m second
-            {
-            //    printf("loopinterval\n");
-
-                loopinterval =0;
-                IT6802_fsm();
-            }
-    #endif
-
-
+    ///////////////////////////
+    // sys main flow
+    ///////////////////////////
+    if( loopinterval >=MS_LOOP) //execute once each 50m second
+    {
+        loopinterval =0;
+        IT6802_fsm();
     }
-
 }
 
 

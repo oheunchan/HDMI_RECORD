@@ -19,7 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stdio.h"
-#include "IT68013CX\it68013CX_main.c"
+//#include "IT68013CX\it68013CX_main.c" //yjh2026
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -115,9 +115,13 @@ void Reset_ITE(void)
 {
   printf("#####ITE Reset!!\r\n");
 	HAL_Delay(100);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+	//yjh2026 회로도 확인해서 수정, PA5(MCU_RESET)은 ITE칩 리셋이 아님
+	HAL_GPIO_WritePin(HDMI_RX_RST_GPIO_Port, HDMI_RX_RST_Pin, GPIO_PIN_RESET); //yjh2026 PB9
+	HAL_GPIO_WritePin(HDMI_TX_RST_GPIO_Port, HDMI_TX_RST_Pin, GPIO_PIN_RESET); //yjh2026 PB12
 	HAL_Delay(100);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); 
+	HAL_GPIO_WritePin(HDMI_RX_RST_GPIO_Port, HDMI_RX_RST_Pin, GPIO_PIN_SET); //yjh2026
+	HAL_GPIO_WritePin(HDMI_TX_RST_GPIO_Port, HDMI_TX_RST_Pin, GPIO_PIN_SET); //yjh2026
+	HAL_Delay(10); //yjh2026 TODO - 리셋후 대기시간 데이터시트 확인
 }
 
 
@@ -135,11 +139,12 @@ void LED_ON_OFF(u8 onoff)
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {  //oec20251221
-	if (GPIO_Pin == GPIO_PIN_4) {
-		// PB8 인터럽트 발생 시 처리
-		if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4) == GPIO_PIN_SET) {
+	//yjh2026 TODO - .ioc에서 PB13 EXTI로 바꿔야함
+	//yjh2026 TODO - RX_INT 미연결이라 RX쪽은 polling으로 처리
+	if (GPIO_Pin == HDMI_TX_INT_Pin) { //yjh2026 PB4->PB13 회로도 확인
+		if (HAL_GPIO_ReadPin(HDMI_TX_INT_GPIO_Port, HDMI_TX_INT_Pin) == GPIO_PIN_SET) {
 			ite_int_check = 1;
-			printf("########HDMI Interrupt Pin Detected!!\r\n");
+			printf("########HDMI TX Interrupt Detected!!\r\n");
 		}
 	}
 }

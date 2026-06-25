@@ -30,7 +30,7 @@ BOOL i2c_write_byte(u8 addr, u8 offset, u8 length, u8 *buffer)
 
     //pr_err("i2c write %02x %02x %d, ret=%d\r\r\n", (int)addr, (int)offset, (int)length, ret);
 
-    if ( 0 > ret )
+    if ( ret != HAL_OK ) //yjh2026
     {
         pr_err("ERROR: it66122_i2c_write %02x %02x\r\n", addr, offset);
         return false;
@@ -59,7 +59,7 @@ BOOL i2c_read_byte(u8 addr, u8 offset, u8 length, u8 *buffer)
     ret = HAL_I2C_Mem_Read(&hi2c1, addr, offset, 1, buffer, length,HAL_MAX_DELAY);
 
     //pr_err("i2c read %02x %02x %d, ret=%d\r\r\n", (int)addr, (int)offset, (int)length, ret);
-    if ( 0 > ret  )
+    if ( ret != HAL_OK ) //yjh2026
     {
         pr_err("ERROR: it66122_i2c_read %02x %02x\r\n", addr, offset);
         return false;

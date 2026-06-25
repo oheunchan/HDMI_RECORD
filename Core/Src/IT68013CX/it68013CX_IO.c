@@ -10,6 +10,7 @@
 //******************************************/
 #include "it68013CX_config.h"
 #include "it68013CX_MCU.h"
+#include "it68013CX_IO.h" //yjh2026
 //#include "nop.h"
 #include <stdio.h>
 
@@ -376,5 +377,35 @@ SYS_STATUS IT6802_CEC_WriteI2C_Byte(BYTE offset,BYTE buffer )
 }
 
 #endif
+
+#else //yjh2026
+
+extern I2C_HandleTypeDef hi2c1;
+
+BOOL i2c_write_byte( BYTE address,BYTE offset,BYTE byteno,BYTE *p_data,BYTE device )
+{
+	HAL_StatusTypeDef ret;
+	(void)device;
+	ret = HAL_I2C_Mem_Write(&hi2c1, address, offset, I2C_MEMADD_SIZE_8BIT, p_data, byteno, 100);
+	if(ret != HAL_OK)
+	{
+		printf("i2c_wr err 0x%02X 0x%02X\r\n", address, offset);
+		return FALSE;
+	}
+	return TRUE;
+}
+
+BOOL i2c_read_byte( BYTE address,BYTE offset,BYTE byteno,BYTE *p_data,BYTE device )
+{
+	HAL_StatusTypeDef ret;
+	(void)device;
+	ret = HAL_I2C_Mem_Read(&hi2c1, address, offset, I2C_MEMADD_SIZE_8BIT, p_data, byteno, 100);
+	if(ret != HAL_OK)
+	{
+		printf("i2c_rd err 0x%02X 0x%02X\r\n", address, offset);
+		return FALSE;
+	}
+	return TRUE;
+}
 
 #endif

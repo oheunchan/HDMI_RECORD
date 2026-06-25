@@ -157,7 +157,7 @@ AVI_InfoFrame aviinfoframe;
 int InColorMode  = RGB444; //RGB444, YCbCr422, YCbCr444
 int OutColorMode = RGB444; //RGB444, YCbCr422, YCbCr444
 int OutCD        = OUT8B;
-int VIC;
+static int VIC; //yjh2026
 //for debug only
 
 
@@ -568,7 +568,7 @@ _CODE unsigned char  SuppRCPCode[128]= { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 #endif
 //FIX_ID_036    xxxxx
 
-_CODE unsigned char bCSCMtx_RGB2YUV_ITU601_16_235[]=
+static _CODE unsigned char bCSCMtx_RGB2YUV_ITU601_16_235[]= //yjh2026
 {
     0x00,        0x80,        0x00,
     0xB2,0x04,    0x65,0x02,    0xE9,0x00,
@@ -576,7 +576,7 @@ _CODE unsigned char bCSCMtx_RGB2YUV_ITU601_16_235[]=
     0x49,0x3D,    0x9F,0x3E,    0x18,0x04
 };
 
-_CODE unsigned char bCSCMtx_RGB2YUV_ITU601_0_255[]=
+static _CODE unsigned char bCSCMtx_RGB2YUV_ITU601_0_255[]= //yjh2026
 {
     0x10,        0x80,        0x00,
     0x09,0x04,    0x0E,0x02,    0xC9,0x00,
@@ -584,7 +584,7 @@ _CODE unsigned char bCSCMtx_RGB2YUV_ITU601_0_255[]=
     0xAB,0x3D,    0xD1,0x3E,    0x84,0x03
 };
 
-_CODE unsigned char bCSCMtx_RGB2YUV_ITU709_16_235[]=
+static _CODE unsigned char bCSCMtx_RGB2YUV_ITU709_16_235[]= //yjh2026
 {
     0x00,        0x80,        0x00,
     0xB8,0x05,    0xB4,0x01,    0x94,0x00,
@@ -592,7 +592,7 @@ _CODE unsigned char bCSCMtx_RGB2YUV_ITU709_16_235[]=
     0xD9,0x3C,    0x10,0x3F,    0x17,0x04
 };
 
-_CODE unsigned char bCSCMtx_RGB2YUV_ITU709_0_255[]=
+static _CODE unsigned char bCSCMtx_RGB2YUV_ITU709_0_255[]= //yjh2026
 {
     0x10,        0x80,        0x00,
     0xE4,0x04,    0x77,0x01,    0x7F,0x00,
@@ -601,7 +601,7 @@ _CODE unsigned char bCSCMtx_RGB2YUV_ITU709_0_255[]=
 };
 
 
-_CODE unsigned char bCSCMtx_YUV2RGB_ITU601_16_235[] =
+static _CODE unsigned char bCSCMtx_YUV2RGB_ITU601_16_235[] = //yjh2026
 {
     0x00,        0x00,        0x00,
     0x00,0x08,    0x6B,0x3A,    0x50,0x3D,
@@ -609,7 +609,7 @@ _CODE unsigned char bCSCMtx_YUV2RGB_ITU601_16_235[] =
     0x00,0x08,    0xFD,0x3F,    0xDA,0x0D
 };
 
-_CODE unsigned char bCSCMtx_YUV2RGB_ITU601_0_255[] =
+static _CODE unsigned char bCSCMtx_YUV2RGB_ITU601_0_255[] = //yjh2026
 {
     0x04,        0x00,        0xA7,
     0x4F,0x09,    0x81,0x39,    0xDD,0x3C,
@@ -617,7 +617,7 @@ _CODE unsigned char bCSCMtx_YUV2RGB_ITU601_0_255[] =
     0x4F,0x09,    0xFD,0x3F,    0x1F,0x10
 };
 
-_CODE unsigned char bCSCMtx_YUV2RGB_ITU709_16_235[] =
+static _CODE unsigned char bCSCMtx_YUV2RGB_ITU709_16_235[] = //yjh2026
 {
     0x00,        0x00,        0x00,
     0x00,0x08,    0x55,0x3C,    0x88,0x3E,
@@ -625,7 +625,7 @@ _CODE unsigned char bCSCMtx_YUV2RGB_ITU709_16_235[] =
     0x00,0x08,    0x00,0x00,    0x84,0x0E
 };
 
-_CODE unsigned char bCSCMtx_YUV2RGB_ITU709_0_255[] =
+static _CODE unsigned char bCSCMtx_YUV2RGB_ITU709_0_255[] = //yjh2026
 {
     0x04,        0x00,        0xA7,
     0x4F,0x09,    0xBA,0x3B,    0x4B,0x3E,
@@ -635,7 +635,7 @@ _CODE unsigned char bCSCMtx_YUV2RGB_ITU709_0_255[] =
 
 //FIX_ID_027 xxxxx Support Full/Limited Range convert
 //full 2 limit
-_CODE unsigned char bCSCMtx_RGB_0_255_RGB_16_235[] =
+static _CODE unsigned char bCSCMtx_RGB_0_255_RGB_16_235[] = //yjh2026
 {
     0x10,        0x10,        0x00,
     0xe0,0x06,    0x00,0x00,    0x00,0x00,
@@ -646,7 +646,7 @@ _CODE unsigned char bCSCMtx_RGB_0_255_RGB_16_235[] =
 };
 
 //limit 2 full
-_CODE unsigned char bCSCMtx_RGB_16_235_RGB_0_255[] =
+static _CODE unsigned char bCSCMtx_RGB_16_235_RGB_0_255[] = //yjh2026
 {
     0xED,        0xED,        0x00,
     0x50,0x09,    0x00,0x00,    0x00,0x00,

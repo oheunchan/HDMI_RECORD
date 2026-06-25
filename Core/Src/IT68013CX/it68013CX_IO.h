@@ -13,6 +13,8 @@
 #define _IO_h_
 #include "it68013CX_typedef.h"
 
+#define i2c_write_byte it68013CX_i2c_write_byte //yjh2026
+#define i2c_read_byte it68013CX_i2c_read_byte   //yjh2026
 
 #ifdef SUPPORT_UART_CMD
 void UartCommand();

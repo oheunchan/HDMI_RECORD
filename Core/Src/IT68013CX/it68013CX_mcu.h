@@ -124,57 +124,50 @@ sbit  AFE_RESET_PIN        = P3^5;
 
 #else
 
+//yjh2026 회로도 보고 핀 다시 잡음 (F103C8은 GPIOD/E 없음)
 #ifdef MEGAWIN82516
-  // P2.0 -> GPIOC, Pin 0 (예시)
   #define Hold_Pin_PORT          GPIOC
   #define Hold_Pin_PIN           GPIO_PIN_0
-
-  // P3.0 -> GPIOD, Pin 0 (예시)
   #define SEL_PORT_1_PORT        GPIOD
   #define SEL_PORT_1_PIN         GPIO_PIN_0
 #else
-  // P1.5 -> GPIOB, Pin 5 (예시)
-  #define Hold_Pin_PORT          GPIOB
+  #define Hold_Pin_PORT          GPIOB  //yjh2026 TODO - 미연결, 안씀
   #define Hold_Pin_PIN           GPIO_PIN_5
 
-  // P1.6 -> GPIOB, Pin 6 (예시)
-  #define SEL_PORT_1_PORT        GPIOB
+  #define SEL_PORT_1_PORT        GPIOB  //yjh2026 TODO - 미연결, 안씀
   #define SEL_PORT_1_PIN         GPIO_PIN_6
 
   #define _HPDMOS_
 #endif
 
-// P0.4 -> GPIOA, Pin 4 (예시)
-#define EDID_WP1_PORT            GPIOA
-#define EDID_WP1_PIN             GPIO_PIN_4
+//yjh2026 TODO - EDID_WP 회로도에 없음, 코드에서도 안씀
+#define EDID_WP1_PORT            GPIOB
+#define EDID_WP1_PIN             GPIO_PIN_5  //yjh2026 dummy
 
-// P0.7 -> GPIOA, Pin 7 (예시)
-#define EDID_WP2_PORT            GPIOA
-#define EDID_WP2_PIN             GPIO_PIN_7
+#define EDID_WP2_PORT            GPIOB
+#define EDID_WP2_PIN             GPIO_PIN_5  //yjh2026 dummy
 
-// P1.4 -> GPIOB, Pin 4 (예시)
 #define EDID_WP3_PORT            GPIOB
-#define EDID_WP3_PIN             GPIO_PIN_4
+#define EDID_WP3_PIN             GPIO_PIN_5  //yjh2026 dummy
 
-// P4.3 -> GPIOE, Pin 3 (예시 - STM32F103 대용량 모델에 GPIOE 존재)
-#define gpHPD0_PORT              GPIOE
-#define gpHPD0_PIN               GPIO_PIN_3
+//yjh2026 TODO - gpHPD0은 int변수로 처리중, GPIO 안씀 (HPD는 커넥터 직결)
+#define gpHPD0_PORT              GPIOB  //yjh2026 GPIOE->GPIOB (GPIOE 없음)
+#define gpHPD0_PIN               GPIO_PIN_5  //yjh2026 dummy
 
-// P0.2 -> GPIOA, Pin 2 (예시)
-#define VsyncToggle_PORT         GPIOA
-#define VsyncToggle_PIN          GPIO_PIN_2
+//yjh2026 TODO - VsyncToggle 미연결, 안씀 (PA2는 UART2임)
+#define VsyncToggle_PORT         GPIOB
+#define VsyncToggle_PIN          GPIO_PIN_5  //yjh2026 dummy
 
-// P2.7 -> GPIOC, Pin 7 (예시)
-#define LED1_PORT                GPIOC
-#define LED1_PIN                 GPIO_PIN_7
+//yjh2026 LED1->STATUS_LED(PB14), LED2->REC_LED(PB15) 로 대체
+#define LED1_PORT                GPIOB
+#define LED1_PIN                 GPIO_PIN_14 //yjh2026 STATUS_LED
 
-// P2.6 -> GPIOC, Pin 6 (예시)
-#define LED2_PORT                GPIOC
-#define LED2_PIN                 GPIO_PIN_6
+#define LED2_PORT                GPIOB
+#define LED2_PIN                 GPIO_PIN_15 //yjh2026 REC_LED
 
-// P3.5 -> GPIOD, Pin 5 (예시)
-#define AFE_RESET_PIN_PORT       GPIOD
-#define AFE_RESET_PIN_PIN        GPIO_PIN_5
+//yjh2026 TODO - AFE_RESET 미연결, MEGAWIN 전용 (GPIOD 없음)
+#define AFE_RESET_PIN_PORT       GPIOB
+#define AFE_RESET_PIN_PIN        GPIO_PIN_5  //yjh2026 dummy
 
 
 #endif
