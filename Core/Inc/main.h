@@ -57,18 +57,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define PWR_RST_CTL_Pin GPIO_PIN_1
-#define PWR_RST_CTL_GPIO_Port GPIOA
 #define M_Uart1_RX_Pin GPIO_PIN_2
 #define M_Uart1_RX_GPIO_Port GPIOA
 #define M_Uart1_TX_Pin GPIO_PIN_3
 #define M_Uart1_TX_GPIO_Port GPIOA
 #define MICOM_IR_Pin GPIO_PIN_4
 #define MICOM_IR_GPIO_Port GPIOA
-#define MCU_RESET_Pin GPIO_PIN_5
-#define MCU_RESET_GPIO_Port GPIOA
-#define MCU_RESETA7_Pin GPIO_PIN_7
-#define MCU_RESETA7_GPIO_Port GPIOA
 #define PWR_LED_Pin GPIO_PIN_10
 #define PWR_LED_GPIO_Port GPIOB
 #define GPS_LED_Pin GPIO_PIN_11

@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stdio.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -348,17 +349,14 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, PWR_RST_CTL_Pin|MICOM_IR_Pin|MCU_RESET_Pin|MCU_RESETA7_Pin
-                          |REC_SW_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, MICOM_IR_Pin|REC_SW_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, PWR_LED_Pin|GPS_LED_Pin|HDMI_TX_RST_Pin|STATUS_LED_Pin
                           |REC_LED_Pin|HDMI_RX_RST_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PWR_RST_CTL_Pin MICOM_IR_Pin MCU_RESET_Pin MCU_RESETA7_Pin
-                           REC_SW_Pin */
-  GPIO_InitStruct.Pin = PWR_RST_CTL_Pin|MICOM_IR_Pin|MCU_RESET_Pin|MCU_RESETA7_Pin
-                          |REC_SW_Pin;
+  /*Configure GPIO pins : MICOM_IR_Pin REC_SW_Pin */
+  GPIO_InitStruct.Pin = MICOM_IR_Pin|REC_SW_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
