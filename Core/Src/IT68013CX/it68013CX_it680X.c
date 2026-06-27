@@ -1392,7 +1392,8 @@ void IT6802_fsm_init(void)
 #ifndef MEGAWIN82516
     // P2_0=1;
     // if(P2_0==0)
-    if(1) //oec2026 이부분 확인이 필요함!!
+    int test=1; //oec20260627
+    if(test)
     {
         #ifdef FIX_ID_013_
         //printf("!!!Use External EEPROM 24c04 EDID !!!\n");
@@ -5336,9 +5337,11 @@ void IT6802VideoOutputEnable(unsigned char bEnableOutput)
 
 void IT6802SwitchVideoState(struct it6802_dev_data *it6802,Video_State_Type  eNewVState)
 {
-
+    // printf("[MindTec] IT6802SwitchVideoState: %d -> %d\n", it6802->m_VState, eNewVState);
     if(it6802->m_VState==eNewVState)
         return;
+
+    printf("[MindTec] IT6802SwitchVideoState: %d -> %d\n", it6802->m_VState, eNewVState);
 
     HDMIRX_VIDEO_PRINTF((VStateStr[(unsigned char)eNewVState]));
     HDMIRX_VIDEO_PRINTF(("+++\n"));
@@ -10685,6 +10688,9 @@ void get_vid_info( void )
     CurVTiming.ScanMode    = (InterLaced)&0x01;
     CurVTiming.VPolarity   = (VSyncPol)&0x01;
     CurVTiming.HPolarity   = (HSyncPol)&0x01;
+
+    printf("[HDMI RX] Input resolution: %d x %d (HTotal=%d, VTotal=%d, PCLK=%d)\n",
+           HActive, VActive, HTotal, VTotal, PCLK);
 #endif
 }
 

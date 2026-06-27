@@ -216,7 +216,7 @@ void OEM_1_MainLoop(void)
 		
 		case STAT_UART_INIT:
 
-			Reset_ITE();
+			// Reset_ITE();
 			g_main_state = STAT_IRQ;
 			//HDMITX_WriteI2C_Byte(0xBf,0x22);  //CBCR SWAP
 			break;
@@ -224,7 +224,7 @@ void OEM_1_MainLoop(void)
 		case STAT_INIT:
             printf("**FW Version V1.0**\r\n");
 			printf("IT66122_STAT_INIT\r\n");
-		    // Reset_ITE(); //oec20251221
+		    Reset_ITE(); //oec20251221
 			InitHDMITX_Variable();
 			InitHDMITX();
 			LED_ON_OFF(0);

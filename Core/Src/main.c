@@ -188,13 +188,15 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Infinite loop */
+  Reset_ITE();
+
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     extern 	void OEM_1_MainLoop(void);
     extern   void it68013CX_main(void);
-	  OEM_1_MainLoop();
-    it68013CX_main();
+	  // OEM_1_MainLoop();  //HDMI TX
+    it68013CX_main();    //HDMI RX
 
     /* USER CODE END WHILE */
 

@@ -1,0 +1,3 @@
+../Core/Src/IT68013CX/it68013CX_main.c:51:6:InitMessage	8	static
+../Core/Src/IT68013CX/it68013CX_main.c:69:6:HoldSystem	8	static
+../Core/Src/IT68013CX/it68013CX_main.c:94:6:it68013CX_main	16	static

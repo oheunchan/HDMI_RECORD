@@ -1,5 +1,5 @@
 ../Core/Src/hdmitx_input.c:28:6:CalcAudFS	2
-../Core/Src/hdmitx_input.c:49:6:CalcPCLK	6
+../Core/Src/hdmitx_input.c:49:6:CalcPCLK	10
 ../Core/Src/hdmitx_input.c:129:6:CalcRCLK	3
 ../Core/Src/hdmitx_input.c:165:8:hdmitx_getInputHTotal	1
 ../Core/Src/hdmitx_input.c:182:8:hdmitx_getInputVTotal	1

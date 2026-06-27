@@ -1,0 +1,4 @@
+../Core/Src/IT68013CX/it68013CX_IO.c:90:6:HotPlug	0	static
+../Core/Src/IT68013CX/it68013CX_IO.c:99:6:SetintActive	0	static
+../Core/Src/IT68013CX/it68013CX_IO.c:385:6:it68013CX_i2c_write_byte	32	static
+../Core/Src/IT68013CX/it68013CX_IO.c:398:6:it68013CX_i2c_read_byte	32	static

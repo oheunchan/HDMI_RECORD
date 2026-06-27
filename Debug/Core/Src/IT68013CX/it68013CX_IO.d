@@ -27,7 +27,8 @@ Core/Src/IT68013CX/it68013CX_IO.o: ../Core/Src/IT68013CX/it68013CX_IO.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- ../Core/Src/IT68013CX/it68013CX_reg_c51.h
+ ../Core/Src/IT68013CX/it68013CX_reg_c51.h \
+ ../Core/Src/IT68013CX/it68013CX_IO.h
 ../Core/Src/IT68013CX/it68013CX_config.h:
 ../Core/Src/IT68013CX/it68013CX_MCU.h:
 ../Core/Src/IT68013CX/it68013CX_515XRAM.h:
@@ -57,3 +58,4 @@ Core/Src/IT68013CX/it68013CX_IO.o: ../Core/Src/IT68013CX/it68013CX_IO.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 ../Core/Src/IT68013CX/it68013CX_reg_c51.h:
+../Core/Src/IT68013CX/it68013CX_IO.h:

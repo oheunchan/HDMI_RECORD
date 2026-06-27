@@ -89,11 +89,12 @@ void HoldSystem(void)
 //
 //
 ////////////////////////////////////////////////////////
+// extern void Reset_ITE(void);
+
 void it68013CX_main( void )
 {
     static BYTE it68013CX_initialized = 0; //yjh2026
     static USHORT loopinterval = 0; //yjh2026
-
     //yjh2026 - init once, removed while(1) for non-blocking
     if(!it68013CX_initialized)
     {

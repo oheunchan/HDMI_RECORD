@@ -1,0 +1,6 @@
+../Core/Src/IT68013CX/it68013CX_Utility.c:178:6:init_printf	0	static
+../Core/Src/IT68013CX/it68013CX_Utility.c:183:6:initialTimer1	0	static
+../Core/Src/IT68013CX/it68013CX_Utility.c:188:8:getloopTicCount	8	static
+../Core/Src/IT68013CX/it68013CX_Utility.c:210:5:TimeOutCheck	16	static
+../Core/Src/IT68013CX/it68013CX_Utility.c:219:8:GetCurrentVirtualTime	8	static
+../Core/Src/IT68013CX/it68013CX_Utility.c:224:6:delay1ms	0	static
