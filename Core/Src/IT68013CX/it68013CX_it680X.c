@@ -1392,7 +1392,7 @@ void IT6802_fsm_init(void)
 #ifndef MEGAWIN82516
     // P2_0=1;
     // if(P2_0==0)
-    int test=1; //oec20260627
+    int test=0; //yjh2026 1이면 EDID RAM 꺼짐, 0이어야 내부 EDID 로드됨
     if(test)
     {
         #ifdef FIX_ID_013_
@@ -10482,6 +10482,18 @@ void IT6802_fsm(void)
 
     IT6802HDMIInterruptHandler(it6802data);
     IT6802VideoHandler(it6802data);
+
+    //yjh2026 RX 상태 확인용
+    {
+        static int rx_dbg_cnt = 0;
+        if(++rx_dbg_cnt >= 20)
+        {
+            unsigned char p0_sys = hdmirxrd(REG_RX_P0_SYS_STATUS);
+            unsigned char portsel = hdmirxrd(REG_RX_051) & B_PORT_SEL;
+            printf("[RX] VState=%d port=%d P0_SYS=0x%02X (5V=%d RXCK=%d SCDT=%d)\r\n", it6802data->m_VState, portsel, p0_sys, (p0_sys&0x01), (p0_sys>>3)&1, (p0_sys>>7)&1);
+            rx_dbg_cnt = 0;
+        }
+    }
 #ifndef _FIX_ID_028_
 //FIX_ID_028 xxxxx //For Debug Audio error with S2
     IT6802AudioHandler(it6802data);

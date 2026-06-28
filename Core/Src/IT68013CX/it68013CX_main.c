@@ -121,6 +121,12 @@ void it68013CX_main( void )
 
         it6802HPDCtrl(1,1);    // HDMI port , set HPD = 1
 
+        //yjh2026 디버깅용 - 5V 체크 무시하고 Port 0 HPD 강제 올림
+        chgbank(1);
+        hdmirxset(REG_RX_1B0, 0x03, 0x03);
+        chgbank(0);
+        printf("[DBG] Port 0 HPD forced HIGH\r\n");
+
         it68013CX_initialized = 1;
         return;
     }

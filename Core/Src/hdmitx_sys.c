@@ -593,6 +593,17 @@ void HDMITX_DevLoopProc(void)
 
     CheckHDMITX(&HPDStatus, &HPDChangeStatus, &ParameterChange);
 
+    //yjh2026 TX 상태 확인용
+    {
+        static int tx_dbg_cnt = 0;
+        if(++tx_dbg_cnt >= 500)
+        {
+            unsigned char tx_sys = HDMITX_ReadI2C_Byte(REG_TX_SYS_STATUS);
+            printf("[TX] state=%d HPD=%d sys=0x%02X\r\n", s_plug_state, HPDStatus, tx_sys);
+            tx_dbg_cnt = 0;
+        }
+    }
+
     /* HPD edge 보정(간헐적으로 HPDChangeStatus 누락되는 케이스 보완) */
     sys = HDMITX_ReadI2C_Byte(REG_TX_SYS_STATUS);
     if ((s_plug_state == 0) && (HPDStatus == FALSE) && (sys & B_TX_HPDETECT))
