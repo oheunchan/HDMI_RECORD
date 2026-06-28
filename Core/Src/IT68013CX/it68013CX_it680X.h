@@ -82,7 +82,9 @@
 // 14 eBTA1004_SDR,
 // 15 eBTA1004_DDR
 //06-27 disable --> #define HDMIRX_OUTPUT_VID_MODE (F_MODE_EN_UDFILT | F_MODE_RGB444)
-#define HDMIRX_OUTPUT_VID_MODE eRGB444_DDR
+// #define HDMIRX_OUTPUT_VID_MODE eRGB444_DDR
+#define HDMIRX_OUTPUT_VID_MODE eYUV422_Emb_Sync_SDR
+
 //FIX_ID_003 xxxxx
 
 
@@ -134,9 +136,15 @@
 //FIX_ID_001 xxxxx Add Auto EQ with Manual EQ
 #define EQRETRYFAILCNT 1    // for EQ interrupt
 #define RCLKVALUE 12            // for show TMDS and Pixel Clk
-#define TMDSCLKVALUE 160    // for TMDS > 160 then set RS to 00, otherwise set to 3F
 
+#if 0   //oec20260628
+#define TMDSCLKVALUE 160    // for TMDS > 160 then set RS to 00, otherwise set to 3F
 #define TMDSCLKVALUE_1080P 160    // for TMDS > 160 then set RS to 00, otherwise set to 3F
+#else
+#define TMDSCLKVALUE 250    // for TMDS > 160 then set RS to 00, otherwise set to 3F
+#define TMDSCLKVALUE_1080P 250    // for TMDS > 160 then set RS to 00, otherwise set
+#endif
+
 #define TMDSCLKVALUE_480P 35
 #define TMDSCLKVALUE_MxL_ER1 90
 #define JUDGE_ER1_VALUE 90

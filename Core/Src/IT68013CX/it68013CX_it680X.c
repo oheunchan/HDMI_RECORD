@@ -963,7 +963,7 @@ void MxLrx_write_init(struct IT6802_REG_INI _CODE *tdata)
 void IT6802_VideoOutputConfigure_Init(struct it6802_dev_data *it6802,Video_Output_Configure eVidOutConfig)
 {
     it6802->m_VidOutConfigMode=eVidOutConfig;
-
+    printf("[MindTec] eVidOutConfig: %d\r\n",eVidOutConfig);
     switch(eVidOutConfig)
     {
         case eRGB444_SDR:
@@ -3876,7 +3876,7 @@ void SetDVIVideoOutput(struct it6802_dev_data *it6802)
 }
 
 
-
+#define _ENABLE_YCC_BLANK_VALUE_ 1  //oec20260628
 
 void IT6802_VideoOutputModeSet(struct it6802_dev_data *it6802)
 {
@@ -11008,7 +11008,6 @@ void show_vid_info(void)
         VIDEOTIMNG_DEBUG_PRINTF(("HDMI/DVI Mode : DVI\n"));
     }
 #endif
-
 }
 
 #endif
