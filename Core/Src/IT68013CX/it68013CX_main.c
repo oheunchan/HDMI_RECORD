@@ -151,6 +151,9 @@ void it68013CX_main( void )
     {
         loopinterval =0;
         IT6802_fsm();
+        //yjh2026 VDGatting off - no video일때 출력 0으로 막히는거 방지
+        chgbank(0);
+        hdmirxset(REG_RX_053, B_VDGatting, 0x00);
     }
 }
 

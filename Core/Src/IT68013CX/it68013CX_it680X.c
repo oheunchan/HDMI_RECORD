@@ -4140,7 +4140,10 @@ void IT6802VideoOutputConfigure(struct it6802_dev_data *it6802)
     it6802->m_bUpHDMIMode =IsHDMIMode();
     if(it6802->m_bUpHDMIMode==FALSE)
     {
-    SetDVIVideoOutput(it6802);
+        SetDVIVideoOutput(it6802);
+        //yjh2026 DVI는 AVI 없어 RGB로 잡힘 -> 카메라가 DVI YUV422라 여기서 YUV422 고정
+        SetVideoInputFormatWithoutInfoFrame(it6802, F_MODE_YUV422);
+        SetColorSpaceConvert(it6802);
     }
     else
     {
@@ -4149,6 +4152,7 @@ void IT6802VideoOutputConfigure(struct it6802_dev_data *it6802)
         SetNewInfoVideoOutput(it6802);
 //FIX_ID_027 xxxxx
     }
+
     it6802->m_NewAVIInfoFrameF=FALSE;
 
     // Configure Output Color Depth
@@ -4172,6 +4176,10 @@ void IT6802VideoOutputConfigure(struct it6802_dev_data *it6802)
     // Configure TTL Video Output mode
     IT6802_VideoOutputModeSet(it6802);
 
+    //yjh2026 컬러검출 확인용 (HDMImode 0=DVI 1=HDMI / AVIcolor 0=RGB 1=422 2=444)
+    printf("[RX-FMT] HDMImode=%d AVIcolor=%d InVidMode=0x%02X OutVidMode=0x%02X\r\n",
+           (int)it6802->m_bUpHDMIMode, (int)it6802->ColorMode,
+           (int)it6802->m_bInputVideoMode, (int)it6802->m_bOutputVideoMode);
 }
 
 // ---------------------------------------------------------------------------
@@ -10491,6 +10499,12 @@ void IT6802_fsm(void)
             unsigned char p0_sys = hdmirxrd(REG_RX_P0_SYS_STATUS);
             unsigned char portsel = hdmirxrd(REG_RX_051) & B_PORT_SEL;
             printf("[RX] VState=%d port=%d P0_SYS=0x%02X (5V=%d RXCK=%d SCDT=%d)\r\n", it6802data->m_VState, portsel, p0_sys, (p0_sys&0x01), (p0_sys>>3)&1, (p0_sys>>7)&1);
+            //yjh2026 HDCP 상태 확인용 (enc/auth)
+            {
+                unsigned char p0_hdcp = hdmirxrd(REG_RX_P0_HDCP_STATUS); // 0x93
+                printf("[RX-HDCP] Reg0x93=0x%02X (bit4_enc=%d bit0_auth=%d) RxHDCPState=%d\r\n",
+                       p0_hdcp, (p0_hdcp>>4)&1, p0_hdcp&1, (int)it6802data->m_RxHDCPState);
+            }
             rx_dbg_cnt = 0;
         }
     }
